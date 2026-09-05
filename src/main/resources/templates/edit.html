@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Order</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            /* 🌄 Background Image */
+            background: 
+                linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+                url('https://images.unsplash.com/photo-1504674900247-0877df9cc836');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card {
+            background: #ffffff;
+            width: 360px;              /* ⬅ reduced width */
+            padding: 22px;
+            border-radius: 14px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+        }
+
+        .card h2 {
+            text-align: center;
+            margin-bottom: 18px;
+            font-size: 20px;
+            color: #2d3436;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 14px;       /* ⬅ tighter spacing */
+        }
+
+        .form-group i {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #636e72;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px 10px 8px 36px;
+            border: 1px solid #dfe6e9;
+            border-radius: 7px;
+            font-size: 13px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #6c5ce7;
+            box-shadow: 0 0 5px rgba(108,92,231,0.4);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 9px;
+            background: #6c5ce7;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #5a4bcf;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2><i class="fa-solid fa-pen-to-square"></i> Edit Your Order</h2>
+
+    <form th:action="@{/update}" th:object="${dish}" method="post">
+
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-group">
+            <i class="fa-solid fa-utensils"></i>
+            <input type="text" th:field="*{dishType}" placeholder="Dish Type">
+        </div>
+
+        <div class="form-group">
+            <i class="fa-solid fa-burger"></i>
+            <input type="text" th:field="*{dishName}" placeholder="Dish Name">
+        </div>
+
+        <div class="form-group">
+            <i class="fa-solid fa-clock"></i>
+            <input type="time" th:field="*{orderTime}">
+        </div>
+
+        <div class="form-group">
+            <i class="fa-solid fa-hotel"></i>
+            <input type="text" th:field="*{hotelName}" placeholder="Hotel Name">
+        </div>
+
+        <div class="form-group">
+            <i class="fa-solid fa-location-dot"></i>
+            <input type="text" th:field="*{location}" placeholder="Location">
+        </div>
+
+        <div class="form-group">
+            <i class="fa-solid fa-sort-numeric-up"></i>
+            <input type="number" th:field="*{quantity}" placeholder="Quantity">
+        </div>
+
+        <button class="btn" type="submit">Update Order</button>
+    </form>
+</div>
+
+</body>
+</html>
